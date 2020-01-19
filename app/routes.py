@@ -87,8 +87,8 @@ def before_request():
 @app.route('/user/<username>/edit', methods=['GET', 'POST'])
 @login_required
 def edit_profile(username):
-    form = EditProfileForm()
-    
+    form = EditProfileForm(current_user.username)
+
     if current_user.username != username:
         flash('Action not authorized')
         return redirect(url_for('login'))
